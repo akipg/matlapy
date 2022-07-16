@@ -1,4 +1,4 @@
-# matopy
+# matlapy
 
 **in development**
 
@@ -7,25 +7,25 @@ Python >= 3.6
 
 ## installation
 
-1. Install matopy
+1. Install matlapy
 ```
 
 ```
 
 2. Attach Python to MATLAB
 
-Refer to [**MathWorks' guide**](https://jp.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html) to attach python to matlab.
+    Refer to [**MathWorks' guide**](https://jp.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html) to attach python to matlab.
 
-And also refer to [*MATLAB vs Python versions*](https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/support/sysreq/files/python-compatibility.pdf)
+    And also refer to [*MATLAB vs Python versions*](https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/support/sysreq/files/python-compatibility.pdf)
 
 
-## How to use matopy?
+## How will matlapy work?
 
 ```python
-import matopy import Matopy
+import matlapy import Matlapy
 
 # Start MATLAB
-mpy = Matopy()
+mpy = Matlapy()
 mpy.start_matlab()
 
 # Create a new model
