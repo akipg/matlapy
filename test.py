@@ -1,7 +1,7 @@
-from matopy import Matpy, Block
+from matlapy import Matlapy, Block
 
 
-mat = Matpy()
+mat = Matlapy()
 
 
 print(mat.eng)
@@ -11,3 +11,11 @@ print(mat.eng)
 
 b = Block()
 print(b.eng)
+
+
+
+mat2 = Matlapy()
+
+print(mat2.connection.connect_first_matlab())
+
+mat2.Block()

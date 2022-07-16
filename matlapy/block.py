@@ -1,9 +1,9 @@
-import matopy.matlab_connection
+import matlapy.matlab_connection
 
 class Block:
     def __init__(self, h=None, eng=None):
         if eng is None:
-            self.eng = matopy.matlab_connection.connection.eng
+            self.eng = matlapy.matlab_connection.connection.eng
         else:
             self.eng = eng
         if self.eng and h:
