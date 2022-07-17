@@ -20,8 +20,9 @@ class MatlabConnection:
         return self.__eng
     @eng.setter
     def eng(self, new_eng):
-        self.__eng = new_eng
-        self.add_mfiles_path()
+        if self.__eng != new_eng:
+            self.__eng = new_eng
+            self.add_mfiles_path()
     
     def add_mfiles_path(self):
         mfiles_path = str(Path(__file__).absolute().parent/"matlab").replace("/", "\\")
