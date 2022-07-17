@@ -15,6 +15,6 @@ mat.eng.cd(str(Path().absolute()))
 
 model = mat.Slx("test1")
 
-
+print(mat.eng.matlapy.getMdlInports("untitled1"))
 
 #mat.eng.load_system("")

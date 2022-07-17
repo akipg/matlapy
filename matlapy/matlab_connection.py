@@ -1,18 +1,31 @@
 """matlab_connection
 """
 from typing import Tuple
+from pathlib import Path
 
 import matlab.engine as matlab_engine
 import matlab.engine.matlabengine
 
 class MatlabConnection:
     def __init__(self) -> None:
-        self.eng = None
+        self.__eng = None
         self.eng_name = ""
 
     @property
     def eng_names(self) -> Tuple[str, ...]:
         return matlab_engine.find_matlab()
+
+    @property
+    def eng(self):
+        return self.__eng
+    @eng.setter
+    def eng(self, new_eng):
+        self.__eng = new_eng
+        self.add_mfiles_path()
+    
+    def add_mfiles_path(self):
+        mfiles_path = str(Path(__file__).absolute().parent/"matlab").replace("/", "\\")
+        self.eng.addpath(mfiles_path, nargout=0)
 
     def find_matlab(self) -> Tuple[str, ...]:
         return matlab_engine.find_matlab()
