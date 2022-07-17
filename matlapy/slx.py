@@ -26,6 +26,10 @@ class Slx:
         self.h = None
     
     @property
+    def root(self):
+        return self.name
+    
+    @property
     def MDLInfo(self):
         return self.eng.Simulink.MDLInfo(self.name)
     
