@@ -7,7 +7,6 @@ import matlab.engine.matlabengine
 
 class MatlabConnection:
     def __init__(self) -> None:
-        print("Init MatlabConnection")
         self.eng = None
         self.eng_name = ""
 
