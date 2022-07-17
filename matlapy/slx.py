@@ -32,8 +32,11 @@ class Slx:
     
     @property
     def inports(self):
-        info = self.info
-        self.eng.work
+        return self.eng.matlapy.getMdlInports(self.name)
+    
+    @property
+    def outports(self):
+        return self.eng.matlapy.getMdlOutports(self.name)
     
     def force_close(self):
         self.eng.close_system(self.h, 0, "CloseReferencedModels", "on", nargout=0)

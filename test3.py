@@ -13,8 +13,11 @@ mat.eng.cd(str(Path().absolute()))
 
 # mat.eng.open_system("testsys", nargout=0)
 
-model = mat.Slx("test1")
+model = mat.Slx("untitled1")
 
 print(mat.eng.matlapy.getMdlInports("untitled1"))
+
+
+print(model.inports)
 
 #mat.eng.load_system("")
