@@ -1,15 +1,15 @@
 from pathlib import Path
 
 class Slx:
-    def __init__(self, desiredName, eng, saveTo=None) -> None:
+    def __init__(self, desiredName, eng, desiredSuffix="slx", saveTo=None) -> None:
         self.__desiredName = desiredName
+        self.__desiredSuffix = desiredSuffix
         self.eng = eng
         
         # if saveTo is None:
         #     saveTo = Path()
         
         self.h = None
-
     
     @property
     def name(self):
@@ -29,6 +29,21 @@ class Slx:
     @property
     def info(self):
         return self.MDLInfo
+    
+    @property
+    def filepath(self):
+        return str(self.eng.matlapy.getMdlFilename(self.name))
+    
+    @property
+    def parentpath(self):
+        return str(Path(self.filepath).parent)
+    
+    @property
+    def suffix(self):
+        try:
+            return Path(self.filepath).suffix
+        except:
+            return self.__desiredSuffix
     
     @property
     def inports(self):
@@ -52,8 +67,9 @@ class Slx:
         return self
         
     def new(self, name=None):
-        self.h = self.eng.new_system(name or self.__desiredName, nargout=1)
-        self.save()
+        mdlname = name or self.name
+        self.h = self.eng.new_system(f"{mdlname}", nargout=1)
+        self.save(f"{mdlname}.{self.suffix}")
         return self
     
     def renew(self):
@@ -61,8 +77,12 @@ class Slx:
         self.new()
         return self
     
-    def save(self):
-        self.eng.save_system(self.h, nargout=0)
+    def save(self, filepath=None):
+        if filepath:
+            self.eng.save_system(filepath, nargout=0)
+        else:
+            self.eng.save_system(self.h, nargout=0)
+            
         return self
         
     def load(self, name=None):
@@ -72,3 +92,20 @@ class Slx:
     def open(self):
         self.eng.open_system(self.h)
         return self
+    
+    def duplicate(self):
+        success = False
+        num = 1
+        duplicatedName = f"Copy_of_{self.name}"
+        while True:
+            if num > 5000:
+                raise Exception("Duplicate filename cannot be set.")
+            if Path(duplicatedName + "." + self.suffix).exists():
+                num += 1
+                duplicatedName = f"Copy_{num}_of_{self.name}"
+            else:
+                break
+        return Slx(duplicatedName, eng=self.eng, desiredSuffix=self.suffix).new()
+            
+
+        

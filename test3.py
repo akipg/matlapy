@@ -17,7 +17,9 @@ model = mat.Slx("untitled1")
 
 print(mat.eng.matlapy.getMdlInports("untitled1"))
 
-
 print(model.inports)
+
+
+model.duplicate()
 
 #mat.eng.load_system("")
