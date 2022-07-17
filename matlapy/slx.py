@@ -125,9 +125,9 @@ class Slx:
         for h in finds:
             bt = self.eng.get_param(h, "BlockType") 
             if bt == "SubSystem":
-                blocks.append(Subsystem(h))
+                blocks.append(Subsystem(h, eng=self.eng))
             else:
-                blocks.append(Block(h))
+                blocks.append(Block(h, eng=self.eng))
         return blocks
     
     def find(self, *args):
@@ -139,9 +139,9 @@ class Slx:
         for h in finds:
             bt = self.eng.get_param(h, "BlockType") 
             if bt == "SubSystem":
-                blocks.append(Subsystem(h))
+                blocks.append(Subsystem(h, eng=self.eng))
             else:
-                blocks.append(Block(h))
+                blocks.append(Block(h, eng=self.eng))
             break
         try:
             return blocks[0]

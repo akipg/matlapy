@@ -119,9 +119,25 @@ class Block:
         if parent != dstblock.parent:
             raise Exception(
                 f"parent is missmatch, self: {parent}, dst:{dstblock.parent}")
-        auto_routing= "on" if auto_routing else "Off"
-        self.eng.add_line(parent, f"{self.name}/{int(srcport)}", f"{dstblock.name}/{int(dstport)}", "autoRouting", auto_routing)
+        self.eng.add_line(parent,
+                          f"{self.name}/{int(srcport)}",
+                          f"{dstblock.name}/{int(dstport)}", 
+                          "autoRouting", auto_routing= "on" if auto_routing else "Off")
         return self
+
+    def connectFrom(self, srcblock, srcport=1, dstport=1, auto_routing=True):
+        if srcblock is None:
+            raise Exception("srcblock is None.")
+        parent= self.parent
+        if parent != srcblock.parent:
+            raise Exception(
+                f"parent is missmatch, self: {parent}, src:{srcblock.parent}")
+        self.eng.add_line(parent,
+                          f"{srcblock.name}/{int(srcport)}", 
+                          f"{self.name}/{int(dstport)}", 
+                          "autoRouting", "on" if auto_routing else "Off")
+        return self
+
 
     def delete(self):
         self.eng.delete_block(self.h, nargout=0)

@@ -28,8 +28,16 @@ sub1 = mdl.subsystem("sub1", make_name_unique=True)
 
 print(sub1.name)
 
-print(sub1.add_block(Constant, "cons1", "MakeNameUnique", "on").enter())
+print(sub1.add_block(Constant, "cons1").enter())
 
 search = mdl.find("sub1")
 print(search)
 
+
+sub1.moveTo(0, 0)
+
+sub1.add_block(Constant)
+subsub = sub1.subsystem(f"subsub_ue")
+for i in range(10):
+    subsub = sub1.subsystem(f"subsub{i}").alignTo(subsub, align=6, anchor=0, marginY=20).connectFrom(subsub)
+    
