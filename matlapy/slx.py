@@ -1,5 +1,8 @@
 from pathlib import Path
 
+from matlapy.block import Block
+from matlapy.subsystem import Subsystem
+
 class Slx:
     def __init__(self, desiredName, eng, desiredSuffix="slx", saveTo=None) -> None:
         self.__desiredName = desiredName
@@ -106,6 +109,11 @@ class Slx:
             else:
                 break
         return Slx(duplicatedName, eng=self.eng, desiredSuffix=self.suffix).new()
-            
-
+        
+    def subsystem(self, name, make_name_unique=False):
+        return Subsystem(self.eng.add_block("simulink/Ports & Subsystems/Subsystem",
+                                            self.name + "/" + name,
+                                            "MakeNameUnique", "on" if make_name_unique else "off",),
+                         eng=self.eng)
+        
         
