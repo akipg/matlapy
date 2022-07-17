@@ -44,7 +44,7 @@ class Subsystem(Block):
                                                          "MakeNameUnique", "on" if make_name_unique else "off", 
                                                          *args),
                                       eng=self.eng)
-        return self
+        return self.last_added_block
     
     def finds(self, *args):
         if len(args)%2 == 1:            

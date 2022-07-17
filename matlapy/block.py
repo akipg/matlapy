@@ -122,7 +122,7 @@ class Block:
         self.eng.add_line(parent,
                           f"{self.name}/{int(srcport)}",
                           f"{dstblock.name}/{int(dstport)}", 
-                          "autoRouting", auto_routing= "on" if auto_routing else "Off")
+                          "autoRouting", "on" if auto_routing else "Off")
         return self
 
     def connectFrom(self, srcblock, srcport=1, dstport=1, auto_routing=True):
