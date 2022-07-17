@@ -41,6 +41,10 @@ class Block:
     def path(self):
         return self.parent + "/" + self.name
 
+    @property
+    def BlockType(self):
+        return self.eng.get_param(self.h, "BlockType")
+
     def set_param(self, *args):
         self.eng.set_param(self.h, nargout=0, *args)
         return self

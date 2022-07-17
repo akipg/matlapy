@@ -30,6 +30,8 @@ class Matlapy:
         self.start_matlab = lambda : self.connection.start_matlab()
         self.connect_first_matlab = lambda : self.connection.connect_first_matlab()
 
+        self.blocks = blocks
+
     @property
     def eng(self):
         return self.connection.eng

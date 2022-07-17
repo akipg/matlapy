@@ -29,3 +29,7 @@ sub1 = mdl.subsystem("sub1", make_name_unique=True)
 print(sub1.name)
 
 print(sub1.add_block(Constant, "cons1", "MakeNameUnique", "on").enter())
+
+search = mdl.find("sub1")
+print(search)
+

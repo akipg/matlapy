@@ -116,4 +116,34 @@ class Slx:
                                             "MakeNameUnique", "on" if make_name_unique else "off",),
                          eng=self.eng)
         
-        
+    def finds(self, *args):
+        if len(args)%2 == 1:            
+            finds = self.eng.find_system(self.name, "Name", *args)
+        else:
+            finds = self.eng.find_system(self.name, *args)
+        blocks = []
+        for h in finds:
+            bt = self.eng.get_param(h, "BlockType") 
+            if bt == "SubSystem":
+                blocks.append(Subsystem(h))
+            else:
+                blocks.append(Block(h))
+        return blocks
+    
+    def find(self, *args):
+        if len(args)%2 == 1:            
+            finds = self.eng.find_system(self.name, "Name", *args)
+        else:
+            finds = self.eng.find_system(self.name, *args)
+        blocks = []
+        for h in finds:
+            bt = self.eng.get_param(h, "BlockType") 
+            if bt == "SubSystem":
+                blocks.append(Subsystem(h))
+            else:
+                blocks.append(Block(h))
+            break
+        try:
+            return blocks[0]
+        except:
+            return None
