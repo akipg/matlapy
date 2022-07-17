@@ -1,5 +1,6 @@
 import matlapy.matlab_connection
 from .block import Block
+from .slx import Slx
 
 from multiprocessing import Process
 
@@ -39,3 +40,5 @@ class Matlapy:
     def Block(self, h):
         return Block(h, eng=self.eng)
 
+    def Slx(self, desiredName):
+        return Slx(desiredName, eng=self.eng)
