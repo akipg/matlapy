@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from matlapy import Matlapy
+from matlapy.blocks import Constant
 
 mat = Matlapy()
 mat.connect_first_matlab()
@@ -27,4 +28,4 @@ sub1 = mdl.subsystem("sub1", make_name_unique=True)
 
 print(sub1.name)
 
-print(sub1.add_block("simulink/Sources/Constant", "cons1", "MakeNameUnique", "on").enter())
+print(sub1.add_block(Constant, "cons1", "MakeNameUnique", "on").enter())
