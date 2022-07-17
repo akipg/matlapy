@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import matlapy.matlab_connection
 
 class Block:
@@ -37,7 +39,7 @@ class Block:
 
     @property
     def path(self):
-        return self.parent + "." + self.name
+        return self.parent + "/" + self.name
 
     def set_param(self, *args):
         self.eng.set_param(self.h, nargout=0, *args)
@@ -115,7 +117,7 @@ class Block:
     def move(self):
         pass
         return self
-
+    
 if __name__ == "__main__":
     import matlab.engine
     eng_names = matlab.engine.find_matlab()
