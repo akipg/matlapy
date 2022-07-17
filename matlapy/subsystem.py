@@ -25,7 +25,7 @@ class Subsystem(Block):
         return Subsystem(str(path), eng=self.eng)
 
     def enter(self):
-        if "self.last_added_block" not in self.__dict__:
+        if "last_added_block" not in self.__dict__:
             return self
         else:
             return self.last_added_block
