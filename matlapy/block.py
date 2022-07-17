@@ -7,7 +7,7 @@ class Block:
         else:
             self.eng = eng
         if self.eng and h:
-            self.h = self.eng.get_param(h, "Handle")
+            self.h = self.eng.get_param(h, "Handle")    
 
     @property
     def pos(self):
@@ -41,6 +41,7 @@ class Block:
 
     def set_param(self, *args):
         self.eng.set_param(self.h, nargout=0, *args)
+        return self
 
     def get_param(self, *args):
         return self.eng.get_param(self.h, *args)
@@ -53,18 +54,21 @@ class Block:
         pos[2] = xy[1]
         pos[1]= pos[0] + width
         pos[3]= pos[1] + height
+        return self
 
     def moveX(self, dx):
         pos= self.pos
         pos[0] += dx
         pos[2] += dx
         self.pos= pos
+        return self
 
     def moveY(self, dy):
         pos= self.pos
         pos[1] += dy
         pos[3] += dy
         self.pos= pos
+        return self
 
     def alignTo(self, block, align=0, anchor=0, marginX=0, marginY=0):
         pos1= block.pos
@@ -78,6 +82,7 @@ class Block:
         pos[2]= pos[0] + width
         pos[3]= pos[1] + height
         self.pos= pos
+        return self
 
         """
         align, anchor:
@@ -94,19 +99,22 @@ class Block:
             raise Exception(
                 f"parent is missmatch, self: {parent}, dst:{dstblock.parent}")
         auto_routing= "on" if auto_routing else "Off"
-        return self.eng.add_line(parent, f"{self.name}/{int(srcport)}", f"{dstblock.name}/{int(dstport)}", "autoRouting", auto_routing)
+        self.eng.add_line(parent, f"{self.name}/{int(srcport)}", f"{dstblock.name}/{int(dstport)}", "autoRouting", auto_routing)
+        return self
 
     def delete(self):
         self.eng.delete_block(self.h, nargout=0)
+        return self
 
     def copyTo(self, dstpath=None, make_name_unique=True):
         if dstpath is None:
             dstpath= self.path
             make_name_unique= "on" if make_name_unique else "off"
-        return self.eng.add_block(self.h, dstpath, "MakeNameunique", make_name_unique)
+        return Block(self.eng.add_block(self.h, dstpath, "MakeNameunique", make_name_unique))
 
     def move(self):
         pass
+        return self
 
 if __name__ == "__main__":
     import matlab.engine
