@@ -52,13 +52,28 @@ class Block:
     def get_param(self, *args):
         return self.eng.get_param(self.h, *args)
 
-    def moveTo(self, xy):
+    def moveTo(self, x, y):
+        xy = (x, y)
         pos = self.pos
         width = self.width
         height = self.height
         pos[0] = xy[0]
         pos[2] = xy[1]
         pos[1]= pos[0] + width
+        pos[3]= pos[1] + height
+        return self
+
+    def moveXTo(self, x):
+        pos = self.pos
+        width = self.width
+        pos[0] = x
+        pos[1]= pos[0] + width
+        return self
+
+    def moveYTo(self, y):
+        pos = self.pos
+        height = self.height
+        pos[2] = y
         pos[3]= pos[1] + height
         return self
 
