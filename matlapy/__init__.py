@@ -1,4 +1,5 @@
 import matlapy.matlab_connection
+import matlapy.blocks as blocks
 from .block import Block
 from .slx import Slx
 
@@ -42,3 +43,5 @@ class Matlapy:
 
     def Slx(self, desiredName):
         return Slx(desiredName, eng=self.eng)
+    
+    
