@@ -1,4 +1,11 @@
-Inport = "simulink/Ports & Subsystems/Inport"
-Outport = "simulink/Ports & Subsystems/Outport"
+Inport = "simulink/Ports & Subsystems/In1"
+Outport = "simulink/Ports & Subsystems/Out1"
 Subsystem = "simulink/Ports & Subsystems/Subsystem"
+Model = "simulink/Ports & Subsystems/Model"
 Constant = "simulink/Sources/Constant"
+Convert = "simulink/Signal Attributes/Data Type Conversion"
+Convert = "simulink/Signal Attributes/Data Type Conversion"
+
+DataStoreMemory = "simulink/Signal Routing/Data Store Memory"
+DataStoreRead = "simulink/Signal Routing/Data Store Read"
+DataStoreWrite = "simulink/Signal Routing/Data Store Write"
